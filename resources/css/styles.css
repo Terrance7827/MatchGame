@@ -16,7 +16,8 @@ h4 {
   color: rgb(32, 64, 86);
 }
 
-p {
+p, 
+span {
   color: rgb(74, 74, 74);
 }
 
@@ -36,4 +37,11 @@ div.container {
   font-weight: 900;
   color: rgb(255, 255, 255);
   cursor: pointer;
+}
+
+#turnCount {
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color:
 }

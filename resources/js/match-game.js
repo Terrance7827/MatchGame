@@ -1,13 +1,14 @@
 var MatchGame = {};
-
+var turns = 0;
 /*
   Sets up a new game after HTML document has loaded.
   Renders a 4x4 board of cards.
 */
 $(document).ready(function() {
-  var $game = $('.game');
-  var values = MatchGame.generateCardValues();
-  MatchGame.renderCards(values, $game);
+  MatchGame.newGame();
+  $('.restartBtn').click(function(){
+    MatchGame.newGame();
+  })
 })
 /*
   Generates and returns an array of matching card values.
@@ -77,6 +78,8 @@ MatchGame.flipCard = function($card, $game) {
       flippedCards.push($card);
 
     if (flippedCards.length === 2) {
+      turns += 1;
+      $("#turnCount").html("Turns: " + turns);
       if (flippedCards[0].data('value') === flippedCards[1].data('value')) {
         var matchCss = {
           backgroundColor: 'rgb(153, 153, 153)',
@@ -99,3 +102,13 @@ MatchGame.flipCard = function($card, $game) {
           $game.data('flippedCards', []);
   }
 };
+
+/* Begins a new game */
+
+MatchGame.newGame = function(){
+  var $game = $('.game');
+  var values = MatchGame.generateCardValues();
+  turns = 0;
+  $("#turnCount").html("Turns: 0");
+  MatchGame.renderCards(values, $game);
+}
